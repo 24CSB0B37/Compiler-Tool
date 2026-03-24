@@ -5,6 +5,7 @@
 #include "../include/compiler.h"
 #include "../include/parser.h"
 #include "../include/error.h"
+#include "../include/explainer.h"
 
 using namespace std;
 
@@ -47,6 +48,7 @@ int main(int argc, char *argv[])
     cout << output << endl;
 
     vector<errorobject> errors = parseerrors(output);
+    generateexplanations(errors);
 
     cout << "\n--- Parsed Errors ---\n";
     for (auto &e : errors)

@@ -1,7 +1,7 @@
 CXX = g++
 CXXFLAGS = -std=c++11
 
-SRC = src/main.cpp src/compiler.cpp src/parser.cpp src/error.cpp
+SRC = src/main.cpp src/compiler.cpp src/parser.cpp src/error.cpp src/explainer.cpp
 OUT = compiler_tool
 
 all:

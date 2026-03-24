@@ -12,6 +12,10 @@ struct errorobject
     string type;
     string message;
 
+    string category;
+    string explanation;
+    string fix;
+
     string tojson() const;
 };
 
