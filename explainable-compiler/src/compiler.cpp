@@ -1,34 +1,24 @@
 #include "../include/compiler.h"
 #include <cstdio>
-#include <iostream>
 
-using namespace std;
-
-string runcompiler(const string &filename)
+string runcompiler(const string &file)
 {
-    string command;
-    cout << "Running compiler on: " << filename << endl;
+    // delete old binary first
+    system("rm -f ./program");
 
-    // detect file type
-    if (filename.find(".c") != string::npos)
-        command = "gcc " + filename + " 2>&1";
+    string cmd;
+
+    if (file.size() >= 2 && file.substr(file.size() - 2) == ".c")
+        cmd = "gcc -g " + file + " -o program 2>&1";
     else
-        command = "g++ " + filename + " 2>&1";
+        cmd = "g++ -g " + file + " -o program 2>&1";
 
-    string output = "";
-
-    FILE *pipe = popen(command.c_str(), "r");
-    if (!pipe)
-    {
-        cout << "Error running compiler\n";
-        return "";
-    }
-
+    FILE *pipe = popen(cmd.c_str(), "r");
     char buffer[256];
-    while (fgets(buffer, sizeof(buffer), pipe) != NULL)
-    {
+    string output;
+
+    while (fgets(buffer, sizeof(buffer), pipe))
         output += buffer;
-    }
 
     pclose(pipe);
     return output;

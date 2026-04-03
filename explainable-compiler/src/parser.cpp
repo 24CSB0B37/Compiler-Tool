@@ -1,29 +1,26 @@
 #include "../include/parser.h"
 #include <cstdio>
 
-vector<errorobject> parseerrors(const string &output)
+vector<errorobject> parseerrors(const string &out)
 {
     vector<errorobject> errors;
 
-    char linebuf[512];
+    char file[100], type[20], msg[300];
+    int l, c;
+
+    char line[512];
     int i = 0;
 
-    while (i < output.length())
+    while (i < out.length())
     {
         int j = 0;
+        while (i < out.length() && out[i] != '\n')
+            line[j++] = out[i++];
 
-        while (i < output.length() && output[i] != '\n')
-        {
-            linebuf[j++] = output[i++];
-        }
-
-        linebuf[j] = '\0';
+        line[j] = '\0';
         i++;
 
-        char file[100], type[20], msg[300];
-        int l, c;
-
-        if (sscanf(linebuf, "%[^:]:%d:%d: %[^:]: %[^\n]", file, &l, &c, type, msg) == 5)
+        if (sscanf(line, "%[^:]:%d:%d: %[^:]: %[^\n]", file, &l, &c, type, msg) == 5)
         {
             errorobject e;
             e.file = file;

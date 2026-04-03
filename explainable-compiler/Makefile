@@ -1,14 +1,14 @@
-CXX = g++
-CXXFLAGS = -std=c++11
+CXX=g++
+CXXFLAGS=-std=c++11 -Iinclude
 
-SRC = src/main.cpp src/compiler.cpp src/parser.cpp src/error.cpp src/explainer.cpp
-OUT = compiler_tool
+SRC=src/*.cpp
+OUT=compiler_tool
 
 all:
 	$(CXX) $(CXXFLAGS) $(SRC) -o $(OUT)
 
 run:
-	./$(OUT) sample/test.cpp
+	./$(OUT)
 
 clean:
 	rm -f $(OUT)

@@ -6,6 +6,6 @@
 
 using namespace std;
 
-void generateexplanations(vector<errorobject> &errors);
+void explain(vector<errorobject> &errors);
 
 #endif

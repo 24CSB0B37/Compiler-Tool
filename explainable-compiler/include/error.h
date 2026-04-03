@@ -7,14 +7,17 @@ using namespace std;
 struct errorobject
 {
     string file;
-    int line;
-    int column;
+    int line = 0;
+    int column = 0;
     string type;
     string message;
 
     string category;
     string explanation;
     string fix;
+
+    string runtime_error;
+    string runtime_trace;
 
     string tojson() const;
 };
